@@ -1,29 +1,29 @@
-module ReplRecipeProposer
+module ReplSmartFridge
 
 open System
-open ParserRecipeProposer
+open ParserSmartFridge
 
 type Message =
-    | ReadDomainMessage of DomainRecipeProposer.ReadMessage
-    | UpdateDomainMessage of DomainRecipeProposer.UpdateMessage
+    | ReadDomainMessage of DomainSmartFridge.ReadMessage
+    | UpdateDomainMessage of DomainSmartFridge.UpdateMessage
     | NotParsable of string
 
-type State = DomainRecipeProposer.State
+type State = DomainSmartFridge.State
 
 let read (input : string) =
     match input with
-    | AddFood v -> DomainRecipeProposer.AddFood v |> UpdateDomainMessage
-    | RemoveFood v -> DomainRecipeProposer.RemoveFood v |> UpdateDomainMessage
-    | AddRecipe v -> DomainRecipeProposer.AddRecipe v |> UpdateDomainMessage
-    | RemoveRecipe v -> DomainRecipeProposer.RemoveRecipe v |> UpdateDomainMessage
-    | GetAllRecipes -> DomainRecipeProposer.GetAllRecipes |> ReadDomainMessage
-    | GetPossibleRecipes -> DomainRecipeProposer.GetPossibleRecipes |> ReadDomainMessage
+    | AddFood v -> DomainSmartFridge.AddFood v |> UpdateDomainMessage
+    | RemoveFood v -> DomainSmartFridge.RemoveFood v |> UpdateDomainMessage
+    | AddRecipe v -> DomainSmartFridge.AddRecipe v |> UpdateDomainMessage
+    | RemoveRecipe v -> DomainSmartFridge.RemoveRecipe v |> UpdateDomainMessage
+    | GetAllRecipes -> DomainSmartFridge.GetAllRecipes |> ReadDomainMessage
+    | GetPossibleRecipes -> DomainSmartFridge.GetPossibleRecipes |> ReadDomainMessage
     | ParseFailed -> NotParsable input
 
 open Microsoft.FSharp.Reflection
 
 let createHelpText () : string =
-    FSharpType.GetUnionCases typeof<DomainRecipeProposer.Message>
+    FSharpType.GetUnionCases typeof<DomainSmartFridge.Message>
     |> Array.map (fun case -> case.Name)
     |> Array.fold (fun prev curr -> prev + " " + curr) ""
     |> (fun s -> s.Trim() |> sprintf "Known commands are: %s")
@@ -31,12 +31,12 @@ let createHelpText () : string =
 let evaluate (state : State) (msg : Message) =
     match msg with
     | UpdateDomainMessage msg ->
-        let newState = DomainRecipeProposer.update msg state
+        let newState = DomainSmartFridge.update msg state
         //todo remove
         let message = sprintf "The message was %A. New state is %A" msg newState
         (newState, message)
     | ReadDomainMessage msg ->
-        let recipes = DomainRecipeProposer.read msg state
+        let recipes = DomainSmartFridge.read msg state
         let message = sprintf "Found recipes: \n%A" recipes
         (state, message)
     | NotParsable originalInput ->

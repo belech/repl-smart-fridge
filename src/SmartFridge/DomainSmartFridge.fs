@@ -1,4 +1,4 @@
-module DomainRecipeProposer
+module DomainSmartFridge
 
 type Food = string
 
@@ -20,7 +20,7 @@ type UpdateMessage =
     | AddRecipe of Recipe
     | RemoveRecipe of string
 
-type ReadMessage = 
+type ReadMessage =
     | GetAllRecipes
     | GetPossibleRecipes
 
@@ -50,7 +50,7 @@ let removeRecipe (recipeNameToRemove: string) (oldState: State): State = {
 
 let getAllRecipes (state: State): Recipes = state.Recipes
 
-let rec checkReceiptContainsAllAvailableFood (availableFood: list<Food>) (recipe: Recipe): bool = 
+let rec checkReceiptContainsAllAvailableFood (availableFood: list<Food>) (recipe: Recipe): bool =
     let neededFood = Set.ofList recipe.Ingredients
     let availableFood = Set.ofList availableFood
     Set.isSubset neededFood availableFood

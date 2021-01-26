@@ -6,15 +6,15 @@ let main argv =
     printfn "Press CTRL+C to stop the program."
     printf "> "
 
-    let eierspeis: DomainRecipeProposer.Recipe = { Name = "Eierspeis"; Ingredients = ["Butter"; "Eier"; "Salz"; "Pfeffer"] }
-    let butterBrotMitSalz: DomainRecipeProposer.Recipe = { Name = "ButterbrotMitSalz"; Ingredients = ["Butter"; "Brot"; "Salz"] }
-    
-    let initialRecipes: DomainRecipeProposer.Recipes = [ butterBrotMitSalz; eierspeis ]
-    
-    let intialState: DomainRecipeProposer.State = {
+    let eierspeis: DomainSmartFridge.Recipe = { Name = "Eierspeis"; Ingredients = ["Butter"; "Eier"; "Salz"; "Pfeffer"] }
+    let butterBrotMitSalz: DomainSmartFridge.Recipe = { Name = "ButterbrotMitSalz"; Ingredients = ["Butter"; "Brot"; "Salz"] }
+
+    let initialRecipes: DomainSmartFridge.Recipes = [ butterBrotMitSalz; eierspeis ]
+
+    let intialState: DomainSmartFridge.State = {
         FridgeContent = []
         Recipes = initialRecipes
     }
 
-    ReplRecipeProposer.loop intialState
+    ReplSmartFridge.loop intialState
     0 // return an integer exit code

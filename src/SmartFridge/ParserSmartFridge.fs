@@ -1,4 +1,4 @@
-module ParserRecipeProposer
+module ParserSmartFridge
 
 open System
 
@@ -12,7 +12,7 @@ let (|AddFood|RemoveFood|AddRecipe|RemoveRecipe|GetAllRecipes|GetPossibleRecipes
     let tryParseRecipe (arg1: string) (arg2: string) valueConstructor =
         if arg1.Length > 0 && arg2.Length > 0 then
             let ingredients = arg2.Split(',') |> List.ofArray
-            let newRecipe: DomainRecipeProposer.Recipe = {
+            let newRecipe: DomainSmartFridge.Recipe = {
                 Name = arg1
                 Ingredients = ingredients
             }
@@ -21,14 +21,14 @@ let (|AddFood|RemoveFood|AddRecipe|RemoveRecipe|GetAllRecipes|GetPossibleRecipes
     //AddRecipe Eierspeis Eier,Toastbrot
     let parts = input.Split(' ') |> List.ofArray
     match parts with
-    | [ verb ] when safeEquals verb (nameof DomainRecipeProposer.GetAllRecipes) -> GetAllRecipes
-    | [ verb ] when safeEquals verb (nameof DomainRecipeProposer.GetPossibleRecipes) -> GetPossibleRecipes
-    | [ verb; arg ] when safeEquals verb (nameof DomainRecipeProposer.AddFood) -> 
+    | [ verb ] when safeEquals verb (nameof DomainSmartFridge.GetAllRecipes) -> GetAllRecipes
+    | [ verb ] when safeEquals verb (nameof DomainSmartFridge.GetPossibleRecipes) -> GetPossibleRecipes
+    | [ verb; arg ] when safeEquals verb (nameof DomainSmartFridge.AddFood) ->
         tryParseArgument arg (fun value -> AddFood value)
-    | [ verb; arg ] when safeEquals verb (nameof DomainRecipeProposer.RemoveFood) -> 
+    | [ verb; arg ] when safeEquals verb (nameof DomainSmartFridge.RemoveFood) ->
         tryParseArgument arg (fun value -> RemoveFood value)
-    | [ verb; arg1; arg2] when safeEquals verb (nameof DomainRecipeProposer.AddRecipe) ->
+    | [ verb; arg1; arg2] when safeEquals verb (nameof DomainSmartFridge.AddRecipe) ->
         tryParseRecipe arg1 arg2 (fun value -> AddRecipe value)
-    | [ verb; arg ] when safeEquals verb (nameof DomainRecipeProposer.RemoveRecipe) -> 
+    | [ verb; arg ] when safeEquals verb (nameof DomainSmartFridge.RemoveRecipe) ->
         tryParseArgument arg (fun value -> RemoveRecipe value)
     | _ -> ParseFailed

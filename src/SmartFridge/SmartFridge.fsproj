@@ -4,9 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DomainRecipeProposer.fs" />
-    <Compile Include="ParserRecipeProposer.fs" />
-    <Compile Include="ReplRecipeProposer.fs" />
+    <Compile Include="DomainSmartFridge.fs" />
+    <Compile Include="ParserSmartFridge.fs" />
+    <Compile Include="ReplSmartFridge.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 </Project>
