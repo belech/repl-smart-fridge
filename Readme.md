@@ -19,3 +19,22 @@ Execute the following command.
 ```bash
 dotnet run --project src/SmartFridge/SmartFridge.fsproj
 ```
+
+
+## Example commands
+
+AddFood Milch
+AddFood Zucker
+AddFood Salz
+AddFood Hefe
+AddFood Mehl
+
+RemoveFood Milch
+
+AddRecipe Brot Mehl Salz Hefe
+
+RemoveRecipe ButterbrotMitSalz
+
+GetAllRecipes
+
+GetPossibleRecipes
