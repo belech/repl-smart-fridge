@@ -1,11 +1,11 @@
-# FsFhtw
+# SmartFridge
 
 ## Rationale
 
-FsFhtw is a template project showing a functional example of a F# program. It includes:
+SmartFridge is a project showing a functional example of a F# program. It includes:
 
 - A REPL for creating messages and reading the state of the system
-- A simple counter domain
+- A simple food proposal domain
 - Auxiliary files for git, .NET editors and the .NET Core SDK
 
 ## Prerequisites
@@ -17,5 +17,5 @@ FsFhtw is a template project showing a functional example of a F# program. It in
 
 Execute the following command.
 ```bash
-dotnet run src/SmartFridge/SmartFridge.fsproj
+dotnet run --project src/SmartFridge/SmartFridge.fsproj
 ```
