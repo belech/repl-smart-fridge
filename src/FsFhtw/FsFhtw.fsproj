@@ -4,11 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Domain.fs" />
     <Compile Include="DomainRecipeProposer.fs" />
-    <Compile Include="Parser.fs" />
     <Compile Include="ParserRecipeProposer.fs" />
-    <Compile Include="Repl.fs" />
     <Compile Include="ReplRecipeProposer.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
