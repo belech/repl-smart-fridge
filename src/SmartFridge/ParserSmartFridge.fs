@@ -21,14 +21,10 @@ let (|AddFood|RemoveFood|AddRecipe|RemoveRecipe|GetAllRecipes|GetPossibleRecipes
     //AddRecipe Eierspeis Eier,Toastbrot
     let parts = input.Split(' ') |> List.ofArray
     match parts with
-    | [ verb ] when safeEquals verb (nameof DomainSmartFridge.GetAllRecipes) -> GetAllRecipes
-    | [ verb ] when safeEquals verb (nameof DomainSmartFridge.GetPossibleRecipes) -> GetPossibleRecipes
-    | [ verb; arg ] when safeEquals verb (nameof DomainSmartFridge.AddFood) ->
-        tryParseArgument arg (fun value -> AddFood value)
-    | [ verb; arg ] when safeEquals verb (nameof DomainSmartFridge.RemoveFood) ->
-        tryParseArgument arg (fun value -> RemoveFood value)
-    | [ verb; arg1; arg2] when safeEquals verb (nameof DomainSmartFridge.AddRecipe) ->
-        tryParseRecipe arg1 arg2 (fun value -> AddRecipe value)
-    | [ verb; arg ] when safeEquals verb (nameof DomainSmartFridge.RemoveRecipe) ->
-        tryParseArgument arg (fun value -> RemoveRecipe value)
+    | [ verb ] when safeEquals verb ("GetAllRecipes") -> GetAllRecipes
+    | [ verb ] when safeEquals verb ("GetPossibleRecipes") -> GetPossibleRecipes
+    | [ verb; arg ] when safeEquals verb ("AddFood") -> tryParseArgument arg (fun value -> AddFood value)
+    | [ verb; arg ] when safeEquals verb ("RemoveFood") -> tryParseArgument arg (fun value -> RemoveFood value)
+    | [ verb; arg1; arg2] when safeEquals verb ("AddRecipe") -> tryParseRecipe arg1 arg2 (fun value -> AddRecipe value)
+    | [ verb; arg ] when safeEquals verb ("RemoveRecipe") -> tryParseArgument arg (fun value -> RemoveRecipe value)
     | _ -> ParseFailed
