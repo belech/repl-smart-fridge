@@ -18,7 +18,7 @@ let (|AddFood|RemoveFood|AddRecipe|RemoveRecipe|GetAllRecipes|GetPossibleRecipes
             }
             valueConstructor newRecipe
         else ParseFailed
-    //AddRecipe Eierspeis Eier,Toastbrot
+
     let parts = input.Split(' ') |> List.ofArray
     match parts with
     | [ verb ] when safeEquals verb ("GetAllRecipes") -> GetAllRecipes
